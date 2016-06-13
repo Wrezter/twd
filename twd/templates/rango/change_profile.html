@@ -1,0 +1,30 @@
+{% extends "rango/base.html" %}
+
+{% block title %}Change Profile{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
+    <h1> Change Profile</h1> <br/>
+    <form class="form-signin" id="user_form" method="post" action="/rango/change_profile/"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="form-signin-heading">Change Profile</h2>
+
+            {% for field in user_form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}<br />
+            {{ field }}<br />
+            {% endfor %}
+
+            {% for field in userprofile_form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}<br />
+            {{ field }}<br />
+            {% endfor %}
+
+            <br />
+            <input class="btn btn-primary" type="submit" name="submit" value="Apply Changes"/>
+        </form>
+
+</div>
+{% endblock %}
